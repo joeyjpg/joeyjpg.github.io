@@ -14,6 +14,7 @@
     html, body{
         width: 100%;
         height: 100%;
+        font-family: 'JetBrains Mono';
     }
     body {
         background: conic-gradient(
@@ -28,7 +29,6 @@
         overflow: hidden;
         animation: moveBackground 4s linear infinite;
         text-align: center;
-        font-family: 'JetBrains Mono';
     }
 
     @keyframes moveBackground {
@@ -56,6 +56,48 @@
     .socials img {
         border-radius: 20px;
     }
+
+    .sidebar {
+        position: fixed;
+        top: 50%;
+        left: 100%;
+        transform: translate(-130px, -50%);
+        background-color: #7b5392aa;
+        width: 130px;
+        height: 100%;
+        color: #191622;
+        border-radius: 20px 0 0 20px; /* Top-left and bottom-left are rounded */
+    }
+
+    .project {
+        position: relative;
+        width: 110px;
+        height: 200px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+        background-color: #362f49;
+        border-style: solid;
+        border-width: 5px;
+        border-color: #191622;
+        border-radius: 10px;
+        padding-top: 10px;
+        color: #0a090ebb;
+    }
+    .projectimg {
+        width: 90px;
+        height: 90px;
+        border-style: solid;
+        border-width: 5px;
+        border-color: #262133;
+        border-radius: 10px;
+    }
+    .projtitle {
+        color:#0a090e
+    }
+    a {
+      text-decoration: none; /* Removes underline */
+      color: inherit;        /* Makes the link inherit the parent's color */
+    }
   </style>
 </head>
 <body>
@@ -69,5 +111,44 @@
             <a href="https://github.com/joeyjpg/" target="_blank"><img src="github.png" width="120px"></a>
         </div>
     </div>
+    <div class="sidebar">
+        <b><h2>Cool<br>shit<br>i<br>made<br></h2></b>
+        <a target="_blank" href="https://github.com/joeyjpg/wallpapers"><div class="project">
+            <img class="projectimg" src="wallpapers.png">
+            <div class="projtitle">Wallpapers</div>
+            <small>Graphic design is my passion.</small>
+        </div></a>
+        <br>
+        <a target="_blank" href="https://github.com/joeyjpg/wallpapers"><div class="project">
+            <img class="projectimg" src="coolnotifs.png">
+            <div class="projtitle">Coolnotifs</div>
+            <small>Janky but cool python notifs.</small>
+        </div></a>
+    </div>
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById('audio');
+            // This ensures the audio can play without interruptions (ensuring enough data has loaded)
+            var randomTime = Math.random() * audio.duration; // Random time within the audio duration
+            audio.currentTime = randomTime; // Set the audio to start at the random time
+            
+            // Debugging: Check if the randomTime is set correctly
+            console.log("Starting audio at:", randomTime, "seconds");
+            
+            audio.play().then(() => {
+                console.log("Audio is playing.");
+            }).catch((error) => {
+                console.error("Error playing audio:", error);
+            });
+        };
+        
+        // Ensure audio doesn't try to autoplay if the browser blocks it
+        audio.load(); // Start loading the audio file
+    </script>
 </body>
 </html>
+
+<audio id="audio" preload="auto">
+    <source src="2ambylostsounds.mp3" type="audio/mp3">  <!-- Music from https://www.youtube.com/watch?v=xDih5SwFs_c -->
+    Your browser does not support the audio element.
+</audio>
